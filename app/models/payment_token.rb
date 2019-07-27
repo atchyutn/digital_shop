@@ -1,0 +1,2 @@
+class PaymentToken < ApplicationRecord
+end

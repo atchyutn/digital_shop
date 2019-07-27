@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # association specs
+  it { should belong_to(:user) }
+  it { should have_many(:products).dependent(:destroy) }
+
+  # validation specs
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:created_by) }
 end

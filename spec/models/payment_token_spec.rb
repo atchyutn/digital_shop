@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PaymentToken, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # association specs
+  it { should have_many(:purchases) }
+
+  # validation specs
+  [:price, :token].each do |field|
+    it { validate_presence_of(field) }
+  end
 end

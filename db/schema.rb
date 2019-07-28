@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2019_07_27_141142) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payment_tokens", force: :cascade do |t|
+    t.integer "price"
+    t.integer "token"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"

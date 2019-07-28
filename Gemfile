@@ -16,6 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # Haml-rails provides Haml generators for Rails 5
 gem "haml-rails", "~> 2.0"
+# Bootstrap ruby gem Ruby on Rails
+gem 'bootstrap', '~> 4.3.1'
+# jquery-rails to support bootstrap javascript
+gem 'jquery-rails'
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views

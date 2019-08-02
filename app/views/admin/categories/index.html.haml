@@ -1,0 +1,17 @@
+%h1
+  Categories
+
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Created By
+      %th{:scope => "col"} Actions
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td #{category.id}
+        %td #{category.name}
+        %td #{User.find(category.created_by).first_name}
+        %td edit | delete

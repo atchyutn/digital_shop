@@ -1,0 +1,33 @@
+= form_for [:admin, @product], :html => {class: 'product-form'} do |f|
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :description
+        = f.text_area :description, class: 'form-control'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :category
+            - options = options_from_collection_for_select(Category.all, 'id', 'name')
+            = f.select :category_id,  options, class: 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :status
+            - options = [["Active",1], ["In Active",0]]
+            = f.select :status,  options, class: 'form-control'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :price
+            = f.number_field :price, class: 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :offer_price
+            = f.number_field :offer_price, class: 'form-control'
+      .form-group
+        = f.hidden_field :created_by, value: 1
+        = f.submit 'submit', {class: 'btn btn-primary float-right'}
+      

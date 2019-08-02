@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < Admin::BaseController
 
 # before actions
 before_action :find_product, only: [:edit, :show, :update, :destroy]
@@ -25,7 +25,7 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product
+      redirect_to [:admin, @product]
     else
       render 'new'
     end
@@ -34,7 +34,7 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   # product updation and handling failure
   def update
     if @product.update(product_params)
-      redirect_to @product
+      redirect_to [:admin, @product]
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   # destory the product
   def destroy
     @product.destroy
-    redirect_to products_path
+    redirect_to admin_products_path
   end
 
   private

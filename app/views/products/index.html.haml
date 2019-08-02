@@ -1,20 +1,21 @@
 .container  
   %h1
     Products
-  %table.table
-    %thead.thead-dark
-      %tr
-        %th{:scope => "col"} #
-        %th{:scope => "col"} Name
-        %th{:scope => "col"} Category
-        %th{:scope => "col"} Price
-        %th{:scope => "col"} Offer Price
-    %tbody
-      - @products.each do |product|
-        %tr
-          %td #{product.id}
-          %td 
-            = link_to(product.name, product_path(product)) 
-          %td #{product.category.name}
-          %td #{product.price}
-          %td #{product.offer_price}
+  .row
+    - @products.each do |product|
+      .col-md-4
+        .card{:style => "width: 10rem;"}
+          %img.card-img-top{:alt => "Microsoft", :src => "https://images-na.ssl-images-amazon.com/images/I/71yVflZyOYL._SL1500_.jpg"}/
+        .card-body
+          %h5.card-title #{product.name}
+          %p.card-text #{product.description}
+        %ul.list-group.list-group-flush
+          %li.list-group-item
+            Price: 
+            %b $ #{product.price}
+          %li.list-group-item
+            Offer Price: 
+            %b $ #{product.offer_price}
+        .card-body
+          %a.card-link{:href => "#", class: 'btn btn-info'} Add to cart
+          %a.card-link{:href => "#", class: 'btn btn-warning'} Buy Now

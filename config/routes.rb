@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resources :categories
     resources :products
   end
+  root 'products#index'
+  resources :products
 end

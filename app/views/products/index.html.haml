@@ -1,0 +1,20 @@
+.container  
+  %h1
+    Products
+  %table.table
+    %thead.thead-dark
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Name
+        %th{:scope => "col"} Category
+        %th{:scope => "col"} Price
+        %th{:scope => "col"} Offer Price
+    %tbody
+      - @products.each do |product|
+        %tr
+          %td #{product.id}
+          %td 
+            = link_to(product.name, product_path(product)) 
+          %td #{product.category.name}
+          %td #{product.price}
+          %td #{product.offer_price}

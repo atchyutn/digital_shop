@@ -1,0 +1,14 @@
+.container  
+  %h1
+    Cart
+  .row
+    - current_user.added_to_cart_items.each do |cart_item|
+      .col-md-12
+        .col-md-4
+          %img.card-img-top{:alt => "Microsoft", :src => "https://images-na.ssl-images-amazon.com/images/I/71yVflZyOYL._SL1500_.jpg"}/
+        .col-md-4
+          %h5 #{cart_item.product.name}
+          %p #{cart_item.product.description}
+          %p Rs #{cart_item.price}
+        .col-md-4
+          %a{:href => "#{remove_from_cart_path(product: cart_item.product_id)}", class: 'btn btn-info add-to-cart', data: {remote: true, method: :post} } Remove

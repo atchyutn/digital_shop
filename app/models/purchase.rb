@@ -8,4 +8,8 @@ class Purchase < ApplicationRecord
 
   # model validations
   validates_presence_of :user_id, :placed_at, :status, :price, :payment_token_id
+  
+  def send_payment_confirmation
+    CheckoutNotifierMailer.payment_confirmation(self).deliver
+  end
 end

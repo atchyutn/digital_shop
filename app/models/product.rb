@@ -7,6 +7,5 @@ class Product < ApplicationRecord
 
   # model validations
   validates_presence_of :name, :category_id, :price, :status
-  # validates :created_by, presence: true
 
 end

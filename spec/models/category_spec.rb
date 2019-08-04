@@ -7,5 +7,4 @@ RSpec.describe Category, type: :model do
 
   # validation specs
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:created_by) }
 end

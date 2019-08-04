@@ -1,0 +1,26 @@
+%h1
+  Taxes
+= link_to '+ Add Tax', new_admin_tax_path, {class: 'btn btn-success float-right', id: 'add-product-button'}
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Tax Type
+      %th{:scope => "col"} Amount
+      %th{:scope => "col"} Status
+      %th{:scope => "col"} Actions
+  %tbody
+    - @taxes.each do |tax|
+      %tr
+        %td #{tax.id}
+        %td #{tax.name}
+        %td #{tax.tax_type}
+        %td #{tax.amount}
+        %td #{tax.status}
+        %td 
+          = link_to('', edit_admin_tax_path(tax), {class: 'btn btn-primary fa fa-pencil'}) |
+          = link_to('', admin_tax_path(tax), method: :delete,
+                data: { confirm: 'Are you certain you want to delete this?' }, 
+                class: 'btn btn-danger fa fa-trash')
+

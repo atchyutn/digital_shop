@@ -1,0 +1,19 @@
+= form_for [:admin, @tax], :html => {class: 'category-form'} do |f|
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :tax_type
+        = f.text_field :tax_type, class: 'form-control'
+      .form-group
+        = f.label :status
+        - options = [["Active",true], ["In Active",false]]
+        .dropdown
+          = f.select :status, options,  :html => {class: 'btn btn-default dropdown-toggle', type: 'button'}
+      .form-group
+        = f.label :amount
+        = f.text_field :amount, class: 'form-control'
+      .form-group
+        = f.submit 'submit', {class: 'btn btn-primary float-right'}

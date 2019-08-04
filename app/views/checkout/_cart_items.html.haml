@@ -1,0 +1,12 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Price
+  %tbody
+    - cart_items.each_with_index do |cart_item, index|
+      %tr
+        %td #{index+1}
+        %td #{cart_item.product.name}
+        %td #{cart_item.product.price}

@@ -1,5 +1,7 @@
 default: &default
   adapter: postgresql
+  username: pandu
+  password: password
   encoding: unicode
   pool: 5
 
@@ -10,9 +12,3 @@ development:
 test:
   <<: *default
   database: digital_shop_test
-
-production:
-  <<: *default
-  database: digital_shop
-  username: 
-  password: 

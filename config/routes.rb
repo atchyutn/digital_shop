@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'products#index'
   
   get 'buy/cart', to: 'purchase#cart'
+  get 'buy/complete', to: 'purchase#complete'
   
   post 'add_to_cart', to: 'carts#add'
   post 'remove_from_cart', to: 'carts#remove'

@@ -2,7 +2,7 @@
   .row
     .col-md-5.offset-md-4
       %h2
-        Edit #{@user.first_name} role
+        Edit #{@user.first_name} Details
 
       = form_for [:admin, @user], :html => {class: 'user-form'} do |f|
         .form-group
@@ -11,6 +11,12 @@
         .form-group
           = f.label :last_name
           = f.text_field :last_name, class: 'form-control'
+        .form-group
+          = f.label :country_code
+          = f.text_field :country_code, autocomplete: 'country code', class: 'form-control'
+        .form-group
+          = f.label :phone_number
+          = f.text_field :phone_number, autocomplete: 'phone number', class: 'form-control'
         .form-group
           = f.label :role
           - options = [["Admin",0], ["User",1]]

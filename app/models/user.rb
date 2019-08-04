@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :purchased_cart_items, -> {where.not(order_id: nil)}, class_name: "CartItem"
   has_many :added_to_cart_items, -> {where(order_id: nil)}, class_name: "CartItem"
   
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :phone_number, :country_code
   
   after_create :set_authy_id
   

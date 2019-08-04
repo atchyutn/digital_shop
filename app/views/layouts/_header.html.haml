@@ -14,15 +14,15 @@
         %li.nav-item
           %a.nav-link{:href => "/admin/users"} Users
     %ul.navbar-nav.ml-auto
-      %a.dropdown-item.fa.fa-shopping-cart.fa-2x{:href => '/buy/cart'}
-      %a#cart-count{:href => '/buy/cart'} #{current_user.cart_items.count unless current_user.blank?} 
+      %a.dropdown-item.fa.fa-shopping-cart.fa-2x{:href => checkout_cart_path}
+      %a#cart-count{:href => checkout_cart_path} #{get_cart_items_count} 
       %li.nav-item.dropdown
         %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          Profile
+          User
         .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
           - if user_signed_in?
             %a.dropdown-item{:href => edit_user_registration_path} Profile
-            %a.dropdown-item{:href => "#"} Settings
+            %a.dropdown-item{:href => orders_path} Orders
             %a.dropdown-item{href: destroy_user_session_path, data: {method: :delete}} LogOut
           - else
             %a.dropdown-item{:href => new_user_session_path} Log in

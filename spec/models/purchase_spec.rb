@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Purchase, type: :model do
   # association tests
   it { should have_many(:cart_items).dependent(:destroy) }
-  it { should have_many(:taxes).dependent(:destroy) }
   it { should belong_to(:user) }
   it { should belong_to(:payment_token) }
 

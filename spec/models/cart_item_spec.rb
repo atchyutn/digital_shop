@@ -7,7 +7,7 @@ RSpec.describe CartItem, type: :model do
   it { should belong_to(:product) }
 
   # validation specs
-  [:product_id, :order_id, :user_id, :price].each do |field|
+  [:product_id, :user_id, :price].each do |field|
     it { should validate_presence_of(field) }
   end
 end

@@ -2,7 +2,7 @@
   %h1
     Cart
   .row
-    .col-md-8
+    .col-md-8#cart_items_content
       = render "checkout/cart_items", cart_items: current_user.added_to_cart_items
-    .col-md-4
-      = render "checkout/prices_info"
+    .col-md-4#payment_details
+      = render "checkout/prices_info", payment_token: @payment_token

@@ -25,8 +25,10 @@ def create
   @category = Category.new(category_params)
   if @category.save
     redirect_to admin_categories_path
+      flash[:success] = "Woohoo! category created successfully."
   else
     render 'new'
+    flash[:error] = "Oops! Something went wrong!"
   end
 end
 
@@ -34,8 +36,10 @@ end
 def update
   if @category.update(category_params)
     redirect_to admin_categories_path
+      flash[:success] = "Woohoo! category updated successfully."
   else
     render 'edit'
+    flash[:error] = "Oops! Something went wrong!"
   end
 end
 

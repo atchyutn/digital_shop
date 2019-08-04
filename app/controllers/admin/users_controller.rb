@@ -18,6 +18,7 @@ class Admin::UsersController < Admin::BaseController
       redirect_to admin_users_path
     else
       render 'edit'
+      flash[:error] = "Oops! Something went wrong!"
     end
   end
 

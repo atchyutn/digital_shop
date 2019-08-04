@@ -1,29 +1,18 @@
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-  }
+$(document).on("turbolinks:load", function(){
+  $("a.add-to-cart").on("ajax:success", function(event) {
+    response = event.detail[0];
+    $("#cart-count").text(response.added_items_count)
+  });
+  
+  $("a.remove-from-cart").on("ajax:success", function(event) {
+    response = event.detail[0];
+    if(response.added_items_count > 0){
+      $("#cart-count").text(response.added_items_count);
+      $("#cart_items_content").html(response.cart_items);
+      $("#payment_details").html(response.payment_details);
+    }
+    else{
+      document.location.href = "/";
+    }
+  });
 });
-
-// $(document).on("turbolinks:load", function(){
-//   $("body").on("click", ".add-to-cart", function(event){
-//     event.preventDefault();
-//     product = $(this);
-//     $.ajax({
-//       url: product.attr('href'),
-//       beforeSend: function(xhr) {
-//         product.attr('disabled',)
-//       },
-//       type: "POST",
-//       dataType: "JSON",
-//       success: function(data){
-// 
-//       },
-//       error: function(jqxhr){
-// 
-//       },
-//       complete: function(){
-//         console.log("request completed");
-//       }
-//     });
-//   });
-// });

@@ -10,12 +10,12 @@
           %h5.card-title #{product.name}
           %p.card-text #{product.description}
         %ul.list-group.list-group-flush
-          %li.list-group-item
+          %li.list-group-item#product-strike-price
             Price: 
-            %b $ #{product.price}
+            %b Rs #{product.price}
           %li.list-group-item
             Offer Price: 
-            %b $ #{product.offer_price}
+            %b Rs #{product.offer_price}
         .card-body
           %a.card-link{:href => "#{add_to_cart_path(product: product.id)}", class: 'btn btn-info add-to-cart', data: {remote: true, method: :post} } Add to cart
           %a.card-link{:href => "#", class: 'btn btn-warning'} Buy Now

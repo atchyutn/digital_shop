@@ -1,7 +1,13 @@
 class Tax < ApplicationRecord
-  # model associations
-  belongs_to :purchase, class_name: "Purchase", foreign_key: "order_id"
-
+  has_many :payment_token_taxes
+  
+  scope :active, -> {where(status: true)}
+  
   # model validations
-  validates_presence_of :name, :percent, :order_id
+  validates_presence_of :name, :amount, :tax_type
+  
+  def detailed_name
+    return "#{name}@#{amount}%" if tax_type.downcase == "percent"
+    return name
+  end
 end

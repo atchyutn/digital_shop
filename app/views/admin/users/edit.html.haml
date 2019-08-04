@@ -1,0 +1,24 @@
+.container{style: 'margin-top: 10%'}
+  .row
+    .col-md-5.offset-md-4
+      %h2
+        Edit #{@user.first_name} role
+
+      = form_for [:admin, @user], :html => {class: 'user-form'} do |f|
+        .form-group
+          = f.label :first_name
+          = f.text_field :first_name, class: 'form-control'
+        .form-group
+          = f.label :last_name
+          = f.text_field :last_name, class: 'form-control'
+        .form-group
+          = f.label :role
+          - options = [["Admin",0], ["User",1]]
+          .dropdown
+            = f.select :role, options,  :html => {class: 'btn btn-default dropdown-toggle', type: 'button'}
+        .form-group
+          = f.label :email
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+        .form-group
+          = f.submit 'update user', {class: 'btn btn-primary float-right'}

@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 gem "haml-rails", "~> 2.0"
 # Bootstrap ruby gem Ruby on Rails
 gem 'bootstrap', '~> 4.3.1'
+# font awesome for awesome icons
+gem "font-awesome-rails"
 # jquery-rails to support bootstrap javascript
 gem 'jquery-rails'
 # gem 'mini_racer', platforms: :ruby
@@ -74,3 +76,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'mini_racer'
+
+# gem "twilio-ruby"
+gem 'authy', '~> 2.7', '>= 2.7.5'

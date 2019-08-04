@@ -1,0 +1,15 @@
+%table.table
+  %tbody
+    %tr
+      %td Total
+      %td #{@payment_token.get_total}
+    - @payment_token.payment_token_taxes.each do |payment_tax|
+      %tr
+        %td #{payment_tax.tax.detailed_name}
+        %td #{payment_tax.get_amount}
+    %tr
+      %td Grand Total
+      %td #{@payment_token.get_grnad_total}
+= form_tag checkout_complete_path do
+  = hidden_field_tag :token, @payment_token.token
+  = submit_tag "Checkout", class: "btn btn-success btn-block"

@@ -1,22 +1,28 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  %a.navbar-brand{:href => "#"} Digital Shop
+%nav.navbar.navbar-expand-lg.navbar-default
+  %a.navbar-brand{:href => root_path} Digital Shop
   %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarNavDropdown.collapse.navbar-collapse
-    %ul.navbar-nav
-      %li.nav-item.active
-        %a.nav-link{:href => "/admin/categories"}
-          Categories
-          %span.sr-only (current)
-      %li.nav-item
-        %a.nav-link{:href => "/admin/products"} Products
-      %li.nav-item
-        %a.nav-link{:href => "#"} Users
+    - if user_signed_in? && current_user.role == '0'
+      %ul.navbar-nav
+        %li.nav-item.active
+          %a.nav-link{:href => "/admin/categories"}
+            Categories
+            %span.sr-only (current)
+        %li.nav-item
+          %a.nav-link{:href => "/admin/products"} Products
+        %li.nav-item
+          %a.nav-link{:href => "/admin/users"} Users
     %ul.navbar-nav.ml-auto
+      %a.dropdown-item.fa.fa-shopping-cart.fa-2x{:href => '/buy/cart'}
+      %a#cart-count{:href => '/buy/cart'} #{current_user.cart_items.count}
       %li.nav-item.dropdown
         %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           Profile
         .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
-          %a.dropdown-item{:href => "#"} Account
-          %a.dropdown-item{:href => "#"} Profile
-          %a.dropdown-item{:href => "#"} Settings
+          - if user_signed_in?
+            %a.dropdown-item{:href => edit_user_registration_path} Profile
+            %a.dropdown-item{:href => "#"} Settings
+            %a.dropdown-item{href: destroy_user_session_path, data: {method: :delete}} LogOut
+          - else
+            %a.dropdown-item{:href => new_user_session_path} Log in

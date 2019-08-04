@@ -1,0 +1,8 @@
+.container  
+  %h1
+    Cart
+  .row
+    .col-md-8
+      = render "checkout/cart_items", cart_items: current_user.added_to_cart_items
+    .col-md-4
+      = render "checkout/prices_info"

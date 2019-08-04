@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   # model associations
-  has_many :created_categories, class_name: "Category", foreign_key: "created_by"
+  has_many :created_categories, class_name: "Category", foreign_key: "created_by", dependent: :destroy
   has_many :created_products, class_name: "Product", foreign_key: "created_by"
   has_many :purchases, dependent: :destroy
   has_many :cart_items, dependent: :destroy

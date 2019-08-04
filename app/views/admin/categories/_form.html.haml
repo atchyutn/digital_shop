@@ -1,0 +1,10 @@
+= form_for [:admin, @category], :html => {class: 'category-form'} do |f|
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.hidden_field :created_by, value: current_user.id
+        = f.hidden_field :updated_by, value: current_user.id
+        = f.submit 'submit', {class: 'btn btn-primary float-right'}

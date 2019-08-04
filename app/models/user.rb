@@ -1,3 +1,6 @@
+#  TODO : should call set_authy_id if phone_number or country_code is changed
+require "twilio_authy"
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +16,8 @@ class User < ApplicationRecord
   has_many :added_to_cart_items, -> {where(order_id: nil)}, class_name: "CartItem"
   
   validates_presence_of :first_name, :last_name
+  
+  after_create :set_authy_id
   
   def add_to_cart(product)
     added_to_cart_items.create!(product: product, price: product.offer_price) unless has_item_in_cart?(product)
@@ -31,5 +36,14 @@ class User < ApplicationRecord
     products.each do |product|
       add_to_cart(product)
     end
+  end
+  
+  def set_authy_id
+    # TODO : Should be done background job
+    TwilioAuthy.new(user: self).register_user if phone_number && country_code
+  end
+  
+  def phone
+    "#{self.country_code}#{self.phone_number}"
   end
 end

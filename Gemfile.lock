@@ -47,6 +47,8 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    authy (2.7.5)
+      httpclient (>= 2.5.3.3)
     autoprefixer-rails (9.6.1)
       execjs
     bcrypt (3.1.13)
@@ -118,6 +120,7 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    httpclient (2.8.3)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -276,6 +279,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authy (~> 2.7, >= 2.7.5)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug

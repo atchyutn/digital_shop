@@ -1,0 +1,10 @@
+.container  
+  %h1
+    Payment Confirmation
+  .row
+    .col-md-6.offset-md-3
+      Please enter the OTP (Security Code) we sent #{ current_user.phone }
+      = form_tag checkout_verify_payment_path do
+        = hidden_field_tag :token, @payment_token.token
+        = text_field_tag :verification_code
+        = submit_tag "Verify", class: "btn btn-success"

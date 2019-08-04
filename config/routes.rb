@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   
   root 'products#index'
   
-  get 'buy/cart', to: 'purchase#cart'
-  get 'buy/complete', to: 'purchase#complete'
+  get 'checkout/cart', to: 'checkout#cart'
+  get 'checkout/complete', to: 'checkout#complete'
+  post 'checkout/complete', to: 'checkout#request_twof_authentication'
+  post 'checkout/verify_payment', to: 'checkout#verify_authentication'
   
   post 'add_to_cart', to: 'carts#add'
   post 'remove_from_cart', to: 'carts#remove'

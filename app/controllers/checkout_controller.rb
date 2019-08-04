@@ -9,6 +9,10 @@ class CheckoutController < ApplicationController
     redirect_to checkout_complete_path(token: create_payment_token.token)
   end
   
+  def product
+    redirect_to checkout_complete_path(token: create_payment_token(params[:product_id]).token)
+  end
+  
   def complete
     render "checkout/index"
   end
@@ -41,10 +45,11 @@ class CheckoutController < ApplicationController
   end
   
   private
-    def create_payment_token
+    def create_payment_token(product_id = nil)
       payment_token = PaymentToken.create(
-        token: "#{SecureRandom.hex(16)}#{Time.now.to_i}",
-        user_id: current_user.id
+        token:      "#{SecureRandom.hex(16)}#{Time.now.to_i}",
+        user_id:    current_user.id,
+        product_id: product_id
       )
       Tax.active.each do |tax|
         payment_token.payment_token_taxes.create(tax: tax)        
@@ -57,7 +62,7 @@ class CheckoutController < ApplicationController
     end
     
     def check_for_cart_items
-      redirect_to root_path unless current_user.added_to_cart_items.present?
+      redirect_to root_path unless current_user.added_to_cart_items.present? || @payment_token.product
     end
   
 end

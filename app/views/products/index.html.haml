@@ -18,4 +18,4 @@
             %b Rs #{product.offer_price}
         .card-body
           %a.card-link{:href => "#{add_to_cart_path(product: product.id)}", class: 'btn btn-info add-to-cart', data: {remote: true, method: :post} } Add to cart
-          %a.card-link{:href => "#", class: 'btn btn-warning'} Buy Now
+          %a.card-link{:href => "/checkout/product/#{product.id}", class: 'btn btn-warning'} Buy Now

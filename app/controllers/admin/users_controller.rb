@@ -38,6 +38,6 @@ class Admin::UsersController < Admin::BaseController
 
   # user params for user updation
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :role, :phone_number, :country_code)
   end
 end

@@ -36,8 +36,11 @@ class PaymentToken < ApplicationRecord
         price:            self.get_grnad_total,
         placed_at:        Time.now
       )
-      
-      self.user.added_to_cart_items.update_all(order_id: @purchase.id)
+      if self.product
+        self.user.added_to_cart_items.create!(product: self.product, price: self.product.offer_price, order_id: @purchase.id)
+      else
+        self.user.added_to_cart_items.update_all(order_id: @purchase.id)
+      end
       @purchase.send_payment_confirmation
     end
     return @purchase

@@ -5,13 +5,21 @@
       %th{:scope => "col"} Name
       %th{:scope => "col", :colspan => "2"} Price
   %tbody
-    - cart_items.each_with_index do |cart_item, index|
+    - if @payment_token.product
       %tr
-        %td #{index+1}
-        %td #{cart_item.product.name}
+        %td 1
+        %td #{@payment_token.product.name}
         %td 
-          Rs #{cart_item.product.offer_price} 
-          %span{style: "text-decoration: line-through"} (Rs #{cart_item.product.price})
-        %td{:align => "right"}
-          %a{href: remove_from_cart_path(product: cart_item.product.id, token: params[:token]), class: 'btn btn-danger btn-xs remove-from-cart ', data: {remote: true, method: :post}}
-            %i.fa.fa-trash
+          Rs #{@payment_token.product.offer_price} 
+          %span{style: "text-decoration: line-through"} (Rs #{@payment_token.product.price})
+    - else
+      - cart_items.each_with_index do |cart_item, index|
+        %tr
+          %td #{index+1}
+          %td #{cart_item.product.name}
+          %td 
+            Rs #{cart_item.product.offer_price} 
+            %span{style: "text-decoration: line-through"} (Rs #{cart_item.product.price})
+          %td{:align => "right"}
+            %a{href: remove_from_cart_path(product: cart_item.product.id, token: params[:token]), class: 'btn btn-danger btn-xs remove-from-cart ', data: {remote: true, method: :post}}
+              %i.fa.fa-trash

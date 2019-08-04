@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'products#index'
   
   get 'checkout/cart', to: 'checkout#cart'
+  get 'checkout/product/:product_id', to: 'checkout#product'
   get 'checkout/complete', to: 'checkout#complete'
   post 'checkout/complete', to: 'checkout#request_twof_authentication'
   post 'checkout/verify_payment', to: 'checkout#verify_authentication'

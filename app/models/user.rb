@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # model associations
   has_many :created_categories, class_name: "Category", foreign_key: "created_by", dependent: :destroy
   has_many :created_products, class_name: "Product", foreign_key: "created_by"
-  has_many :purchases, dependent: :destroy
+  has_many :purchases, -> {order(placed_at: :desc)}, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :purchased_cart_items, -> {where.not(order_id: nil)}, class_name: "CartItem"
   has_many :added_to_cart_items, -> {where(order_id: nil)}, class_name: "CartItem"
@@ -45,5 +45,9 @@ class User < ApplicationRecord
   
   def phone
     "#{self.country_code}#{self.phone_number}"
+  end
+  
+  def name
+    "#{first_name} #{last_name}"
   end
 end

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   post 'checkout/complete', to: 'checkout#request_twof_authentication'
   post 'checkout/verify_payment', to: 'checkout#verify_authentication'
   
+  get 'orders', to: 'orders#index'
+  get 'orders/:id', to: 'orders#show'
+  get 'orders/:id/resend_order_conformation', to: 'orders#resend_order_conformation'
+  
   post 'add_to_cart', to: 'carts#add'
   post 'remove_from_cart', to: 'carts#remove'
 end

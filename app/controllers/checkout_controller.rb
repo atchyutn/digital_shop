@@ -30,11 +30,11 @@ class CheckoutController < ApplicationController
     if @payment_token
       verification = TwilioAuthy.new(user: @payment_token.user).verify_user(params[:verification_code])
       if verification == true
-        @order = @payment_token.change_payment_status(true)
+        @order = @payment_token.change_payment_status("success")
         render "checkout/order_placed"
       else
         @errors = verification
-        @payment_token.change_payment_status(false)
+        @payment_token.change_payment_status("failed")
         render "checkout/error"
       end
     else

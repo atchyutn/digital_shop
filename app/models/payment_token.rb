@@ -23,17 +23,13 @@ class PaymentToken < ApplicationRecord
   end
   
   def change_payment_status(payment_status)
-    if payment_status
-      self.update_attribute(:status, "success")
-      self.place_order
-    else
-      self.update_attribute(:status, "failed")
-    end
+    self.update_attribute(:status, "success")
+    self.place_order if payment_status == "success"
   end
   
   def place_order
     Purchase.transaction do
-      @order = Purchase.create(
+      @purchase = Purchase.create(
         user_id:          self.user_id,
         payment_token_id: self.id,
         status:           "Paid",
@@ -41,8 +37,9 @@ class PaymentToken < ApplicationRecord
         placed_at:        Time.now
       )
       
-      self.user.added_to_cart_items.update_all(order_id: @order.id)
+      self.user.added_to_cart_items.update_all(order_id: @purchase.id)
+      @purchase.send_payment_confirmation
     end
-    return @order
+    return @purchase
   end
 end

@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 gem "haml-rails", "~> 2.0"
 # Bootstrap ruby gem Ruby on Rails
 gem 'bootstrap', '~> 4.3.1'
+# font awesome for awesome icons
+gem "font-awesome-rails"
 # jquery-rails to support bootstrap javascript
 gem 'jquery-rails'
 # gem 'mini_racer', platforms: :ruby

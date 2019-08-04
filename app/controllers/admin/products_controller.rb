@@ -26,8 +26,10 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
     @product = Product.new(product_params)
     if @product.save
       redirect_to [:admin, @product]
+      flash[:success] = "Woohoo! product created successfully."
     else
       render 'new'
+      flash[:error] = "Oops! Something went wrong!"
     end
   end
 
@@ -35,8 +37,10 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   def update
     if @product.update(product_params)
       redirect_to [:admin, @product]
+      flash[:success] = "Woohoo! product updated successfully."
     else
       render 'edit'
+      flash[:error] = "Oops! Something went wrong!"
     end
   end
 

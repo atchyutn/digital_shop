@@ -3,10 +3,15 @@
     %tr
       %th{:scope => "col"} #
       %th{:scope => "col"} Name
-      %th{:scope => "col"} Price
+      %th{:scope => "col", :colspan => "2"} Price
   %tbody
     - cart_items.each_with_index do |cart_item, index|
       %tr
         %td #{index+1}
         %td #{cart_item.product.name}
-        %td #{cart_item.product.price}
+        %td 
+          Rs #{cart_item.product.offer_price} 
+          %span{style: "text-decoration: line-through"} (Rs #{cart_item.product.price})
+        %td{:align => "right"}
+          %a{href: remove_from_cart_path(product: cart_item.product.id, token: params[:token]), class: 'btn btn-danger btn-xs remove-from-cart ', data: {remote: true, method: :post}}
+            %i.fa.fa-trash

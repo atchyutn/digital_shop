@@ -1,7 +1,7 @@
 require 'authy'
 
 class TwilioAuthy
-  API_KEY = "hx0sw27XScVaHCiySMvSudtnaTODPsD0 "
+  API_KEY = ENV["AUTHY_API_KEY"]
   API_URI  = 'https://api.authy.com'
   
   attr_accessor :user

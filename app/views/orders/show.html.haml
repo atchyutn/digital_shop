@@ -1,8 +1,13 @@
 .container  
   %h1
-    Order #{@purchase.id}
-  .row
-    - @purchase.cart_items.each do |cart_item|
-      .col-md-12
-        #{ cart_item.product.name }
-        #{ cart_item.product.offer_price }
+    Order #{@purchase.id} Details
+  %table.table
+    %thead.thead-dark
+      %tr
+        %th{:scope => "col"} Name
+        %th{:scope => "col"} Offer Price
+    %tbody
+      - @purchase.cart_items.each do |cart_item|
+        %tr
+          %td #{ cart_item.product.name }
+          %td #{ cart_item.product.offer_price }

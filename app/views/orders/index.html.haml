@@ -9,7 +9,7 @@
         %th{:scope => "col"} Price
         %th{:scope => "col"} View Order
     %tbody
-       - current_user.purchases.each do |purchase|
+      - current_user.purchases.each do |purchase|
         %tr
           %td #{purchase.id}
           %td #{ purchase.placed_at }

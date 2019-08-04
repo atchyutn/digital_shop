@@ -12,7 +12,7 @@
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %div
             Currently waiting confirmation for: #{resource.unconfirmed_email}
-         .form-group
+        .form-group
           = f.label :country_code
           = f.text_field :country_code, autocomplete: 'country code', class: 'form-control'
         .form-group

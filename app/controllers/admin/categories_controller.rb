@@ -4,7 +4,7 @@ before_action :find_category, only: [:edit, :show, :update, :destroy]
 
 # get all the categories list
 def index
-  @categories = Category.all
+  @categories = Category.all.order(:created_at)
 end
 
 # display category details

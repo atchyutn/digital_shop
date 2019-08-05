@@ -25,7 +25,7 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to [:admin, @product]
+      redirect_to admin_products_path
       flash[:success] = "Woohoo! product created successfully."
     else
       render 'new'
@@ -36,7 +36,7 @@ before_action :find_product, only: [:edit, :show, :update, :destroy]
   # product updation and handling failure
   def update
     if @product.update(product_params)
-      redirect_to [:admin, @product]
+      redirect_to admin_products_path
       flash[:success] = "Woohoo! product updated successfully."
     else
       render 'edit'

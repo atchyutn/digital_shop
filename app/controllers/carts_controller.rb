@@ -22,7 +22,7 @@ class CartsController < ApplicationController
       render json: {message: "Product not found"}, status: :unprocessable_entity 
       return
     end
-    payment_token = PaymentToken.find_by(token: params[:token])
+    @payment_token = PaymentToken.find_by(token: params[:token])
     if user_signed_in?
       current_user.remove_from_cart(@product)
     else
@@ -32,7 +32,7 @@ class CartsController < ApplicationController
       message: "#{@product.name} has been removed from cart successfully.", 
       added_items_count: get_cart_items_count,
       cart_items: render_to_string(partial: "checkout/cart_items", locals: {cart_items: current_user.added_to_cart_items}),
-      payment_details: render_to_string(partial: "checkout/prices_info", locals: {payment_token: payment_token})
+    payment_details: render_to_string(partial: "checkout/prices_info", locals: {payment_token: @payment_token})
     }, status: :ok
   end
   

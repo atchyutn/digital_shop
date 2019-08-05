@@ -6,6 +6,6 @@ class Product < ApplicationRecord
   belongs_to :category
 
   # model validations
-  validates_presence_of :name, :category_id, :price, :status
+  validates_presence_of :name, :category_id, :price
 
 end

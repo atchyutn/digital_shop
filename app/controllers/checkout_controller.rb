@@ -3,10 +3,15 @@ require "twilio_authy"
 class CheckoutController < ApplicationController
   before_action :authenticate_user!
   before_action :set_payment_token, only: [:complete, :request_twof_authentication, :verify_authentication]
-  before_action :check_for_cart_items, only: [:cart, :complete]
+  before_action :is_payable?, only: [:complete]
   
   def cart
-    redirect_to checkout_complete_path(token: create_payment_token.token)
+    if current_user.added_to_cart_items.present?
+      redirect_to checkout_complete_path(token: create_payment_token.token) 
+    else
+      flash[:alert] = "Oops! Your cart looks empty!"
+      redirect_to root_path
+    end 
   end
   
   def product
@@ -61,7 +66,7 @@ class CheckoutController < ApplicationController
       @payment_token = PaymentToken.find_by(token: params[:token]) unless params[:token].blank?
     end
     
-    def check_for_cart_items
+    def is_payable?
       redirect_to root_path unless current_user.added_to_cart_items.present? || @payment_token.product
     end
   

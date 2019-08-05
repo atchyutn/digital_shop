@@ -6,7 +6,9 @@
         = f.text_field :name, class: 'form-control'
       .form-group
         = f.label :tax_type
-        = f.text_field :tax_type, class: 'form-control'
+        - tax_options = [["Percent","percent"], ["Amount","amount"]]
+        .dropdown
+          = f.select :tax_type, tax_options,  :html => {class: 'btn btn-default dropdown-toggle', type: 'button'}
       .form-group
         = f.label :status
         - options = [["Active",true], ["In Active",false]]

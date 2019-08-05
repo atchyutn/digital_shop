@@ -5,7 +5,7 @@
     - @products.each do |product|
       .col-md-4
         .card{:style => "width: 10rem;"}
-          %img.card-img-top{:alt => "Microsoft", :src => "https://images-na.ssl-images-amazon.com/images/I/71yVflZyOYL._SL1500_.jpg"}/
+          %img.card-img-top{:alt => "Microsoft", :src => fetch_product_img}/
         .card-body.h-25
           %h5.card-title #{product.name}
           %p.card-text #{product.description}
